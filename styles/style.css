@@ -1,0 +1,426 @@
+/* Reusable colors: text, borders, surfaces, and the main green accent. */
+:root {
+    --ink: #22313a;
+    --muted: #66737b;
+    --line: #dce3e7;
+    --surface: #ffffff;
+    --accent: #087e68;
+    --accent-soft: #e5f3ed;
+}
+
+/* Keep the main page neutral with only a restrained warm highlight. */
+[data-testid="stAppViewContainer"] {
+    background:
+        radial-gradient(ellipse at 94% 0%, rgba(240, 194, 129, 0.13), transparent 31rem),
+        #f6f8f9;
+}
+
+/* Keep Streamlit's top toolbar visually transparent. */
+[data-testid="stHeader"] {
+    background: transparent;
+}
+
+/* Limit content width and add breathing room around each page. */
+[data-testid="stMainBlockContainer"] {
+    max-width: 1480px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Create a translucent glass surface over the page background. */
+[data-testid="stSidebar"] {
+    border-right: 1px solid rgba(255, 255, 255, 0.86);
+    background:
+        radial-gradient(ellipse at 12% 2%, rgba(255, 255, 255, 0.9), transparent 38%),
+        radial-gradient(ellipse at 100% 34%, rgba(135, 190, 203, 0.2), transparent 48%),
+        linear-gradient(155deg, rgba(249, 252, 253, 0.84), rgba(233, 241, 246, 0.7));
+    -webkit-backdrop-filter: blur(24px) saturate(175%);
+    backdrop-filter: blur(24px) saturate(175%);
+    box-shadow: 8px 0 32px rgba(44, 63, 75, 0.08), inset -1px 0 rgba(255, 255, 255, 0.72);
+}
+
+/* Use dark ink for clear contrast on the light glass surface. */
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] label {
+    color: #243742;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1 {
+    font-size: 1.35rem;
+}
+
+/* Highlight the current page in the sidebar navigation. */
+[data-testid="stSidebar"] [data-testid="stRadioOption"] {
+    align-self: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: 0.35rem 0.65rem;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 170ms ease, transform 170ms ease;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:not([data-selected="true"]):hover {
+    background: rgba(255, 255, 255, 0.42);
+    transform: translateX(3px);
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"] {
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.88), rgba(231, 245, 241, 0.76));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 16px rgba(61, 123, 131, 0.12);
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"]:hover {
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.96), rgba(231, 245, 241, 0.86));
+    transform: translateX(3px);
+}
+
+/* Keep unselected radio markers light and outlined on the glass surface. */
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:not([data-selected="true"]) > div > div:first-child {
+    background: rgba(255, 255, 255, 0.72) !important;
+    box-shadow: inset 0 0 0 1px rgba(45, 73, 86, 0.42);
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:not([data-selected="true"]) > div > div:first-child > div {
+    background: transparent !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:active {
+    transform: translateX(2px) scale(0.99);
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"] [data-testid="stMarkdownContainer"] p {
+    color: #1e4750;
+    font-weight: 700;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:focus-visible,
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:has(input:focus-visible) {
+    outline: 2px solid #ef927b;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-testid="stSidebar"] [data-testid="stRadioOption"] {
+        transition: none;
+    }
+}
+
+/* Use the same dark text color for all page headings. */
+h1,
+h2,
+h3 {
+    color: var(--ink);
+}
+
+/* Style the home page introduction as a clear, compact hero banner. */
+.st-key-hero_banner {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1.6rem 1.25rem;
+    border-left: 5px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    background: linear-gradient(110deg, #e8eef0, #ffffff 62%, #fff8ec);
+}
+
+.st-key-hero_banner h1 {
+    margin-bottom: 0.25rem;
+}
+
+/* Make each summary metric look like a consistent, lightly raised panel. */
+[data-testid="stMetric"] {
+    min-height: 112px;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: 0 5px 18px rgba(24, 51, 45, 0.045);
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--muted);
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+/* Give tables and charts matching borders and rounded corners. */
+[data-testid="stDataFrame"],
+[data-testid="stTable"],
+[data-testid="stVegaLiteChart"],
+[data-testid="stArrowVegaLiteChart"] {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fff;
+}
+
+/* Use the green accent on selection controls like sliders and checkboxes. */
+[data-testid="stSelectbox"],
+[data-testid="stSlider"],
+[data-testid="stCheckbox"] {
+    accent-color: var(--accent);
+}
+
+/* Give action buttons a consistent height, shape, and label weight. */
+[data-testid="stButton"] button,
+[data-testid="stDownloadButton"] button,
+[data-testid="stFormSubmitButton"] button {
+    min-height: 2.65rem;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+/* Round the corners of info, warning, success, and error messages. */
+[data-testid="stAlert"] {
+    border-radius: 8px;
+}
+
+/* Tighten page padding and metric panels on narrow phone screens. */
+@media (max-width: 640px) {
+    [data-testid="stMainBlockContainer"] {
+        padding-top: 1.25rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    [data-testid="stMetric"] {
+        min-height: 96px;
+        padding: 0.8rem;
+    }
+
+    .st-key-hero_banner {
+        padding: 1.1rem 1rem;
+    }
+}
+
+/* Add calm hover and press feedback to actions across every page. */
+[data-testid="stButton"] button,
+[data-testid="stDownloadButton"] button,
+[data-testid="stFormSubmitButton"] button {
+    transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+[data-testid="stButton"] button:hover,
+[data-testid="stDownloadButton"] button:hover,
+[data-testid="stFormSubmitButton"] button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(36, 64, 75, 0.14);
+}
+
+[data-testid="stButton"] button:active,
+[data-testid="stDownloadButton"] button:active,
+[data-testid="stFormSubmitButton"] button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 6px rgba(36, 64, 75, 0.12);
+}
+
+[data-testid="stButton"] button:focus-visible,
+[data-testid="stDownloadButton"] button:focus-visible,
+[data-testid="stFormSubmitButton"] button:focus-visible {
+    outline: 2px solid rgba(8, 126, 104, 0.55);
+    outline-offset: 2px;
+}
+
+/* Give metrics and data panels a small lift to signal hoverable content. */
+[data-testid="stMetric"],
+[data-testid="stDataFrame"],
+[data-testid="stTable"],
+[data-testid="stVegaLiteChart"],
+[data-testid="stArrowVegaLiteChart"] {
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+[data-testid="stMetric"]:hover,
+[data-testid="stDataFrame"]:hover,
+[data-testid="stTable"]:hover,
+[data-testid="stVegaLiteChart"]:hover,
+[data-testid="stArrowVegaLiteChart"]:hover {
+    transform: translateY(-2px);
+    border-color: #c5d5d9;
+    box-shadow: 0 9px 22px rgba(36, 64, 75, 0.09);
+}
+
+/* Highlight focused inputs and subtly lift them on hover. */
+[data-testid="stSelectbox"],
+[data-testid="stSlider"],
+[data-testid="stCheckbox"],
+[data-testid="stTextInput"],
+[data-testid="stNumberInput"] {
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+[data-testid="stSelectbox"]:hover,
+[data-testid="stTextInput"]:hover,
+[data-testid="stNumberInput"]:hover {
+    transform: translateY(-1px);
+}
+
+[data-testid="stSelectbox"]:focus-within,
+[data-testid="stSlider"]:focus-within,
+[data-testid="stCheckbox"]:focus-within,
+[data-testid="stTextInput"]:focus-within,
+[data-testid="stNumberInput"]:focus-within {
+    border-radius: 7px;
+    box-shadow: 0 0 0 3px rgba(8, 126, 104, 0.14);
+}
+
+/* Disable motion when a user has requested reduced animation. */
+@media (prefers-reduced-motion: reduce) {
+    [data-testid="stMetric"],
+    [data-testid="stDataFrame"],
+    [data-testid="stTable"],
+    [data-testid="stVegaLiteChart"],
+    [data-testid="stArrowVegaLiteChart"],
+    [data-testid="stSelectbox"],
+    [data-testid="stSlider"],
+    [data-testid="stCheckbox"],
+    [data-testid="stTextInput"],
+    [data-testid="stNumberInput"],
+    [data-testid="stButton"] button,
+    [data-testid="stDownloadButton"] button,
+    [data-testid="stFormSubmitButton"] button {
+        transition: none;
+    }
+}
+
+/* Warm coral and pearl colors coordinate the glass surfaces across pages. */
+:root {
+    --ink: #26343c;
+    --muted: #687780;
+    --line: #d8e1e5;
+    --surface: rgba(255, 255, 255, 0.82);
+    --accent: #ef6243;
+    --accent-soft: #fff0e9;
+}
+
+[data-testid="stAppViewContainer"] {
+    background:
+        radial-gradient(ellipse at 95% 0%, rgba(245, 140, 109, 0.12), transparent 32rem),
+        radial-gradient(ellipse at 8% 90%, rgba(151, 193, 207, 0.12), transparent 30rem),
+        #f5f7f8;
+}
+
+/* Give the sidebar a soft warm reflection over its frosted-glass surface. */
+[data-testid="stSidebar"] {
+    background:
+        radial-gradient(ellipse at 12% 2%, rgba(255, 255, 255, 0.94), transparent 38%),
+        radial-gradient(ellipse at 100% 34%, rgba(245, 161, 132, 0.17), transparent 48%),
+        linear-gradient(155deg, rgba(250, 252, 253, 0.86), rgba(233, 241, 246, 0.72));
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    backdrop-filter: blur(26px) saturate(180%);
+}
+
+/* Frame the school icon and product name as a small glass brand tile. */
+.st-key-sidebar_brand {
+    margin-bottom: 0.9rem;
+    padding: 0.8rem 0.85rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 242, 236, 0.55));
+    box-shadow: inset 0 1px 0 #fff, 0 8px 22px rgba(60, 81, 91, 0.07);
+    -webkit-backdrop-filter: blur(18px) saturate(155%);
+    backdrop-filter: blur(18px) saturate(155%);
+}
+
+.st-key-sidebar_brand h1 {
+    margin-bottom: 0.15rem;
+    color: var(--ink);
+    font-size: 1.2rem;
+}
+
+.st-key-sidebar_brand [data-testid="stCaptionContainer"] p {
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"] {
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.9), rgba(255, 237, 229, 0.78));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 16px rgba(188, 93, 66, 0.1);
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"]:hover {
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.98), rgba(255, 237, 229, 0.9));
+}
+
+[data-testid="stSidebar"] [data-testid="stRadioOption"][data-selected="true"] [data-testid="stMarkdownContainer"] p {
+    color: #a3422f;
+}
+
+/* Tint the introductory banner with the same coral-to-pearl glass finish. */
+.st-key-hero_banner {
+    border-left-color: var(--accent);
+    border-radius: 0 14px 14px 0;
+    background: linear-gradient(110deg, rgba(255, 240, 233, 0.9), rgba(255, 255, 255, 0.88) 62%, rgba(232, 241, 245, 0.9));
+    box-shadow: 0 12px 30px rgba(42, 62, 73, 0.07), inset 0 1px 0 #fff;
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* Turn dashboard metrics into translucent glass cards with warm highlights. */
+[data-testid="stMetric"] {
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 14px;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(245, 248, 249, 0.72));
+    box-shadow: 0 8px 24px rgba(40, 61, 72, 0.07), inset 0 1px 0 #fff;
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+}
+
+/* Match chart and table frames to the glass metric cards. */
+[data-testid="stDataFrame"],
+[data-testid="stTable"],
+[data-testid="stVegaLiteChart"],
+[data-testid="stArrowVegaLiteChart"] {
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 8px 24px rgba(40, 61, 72, 0.06), inset 0 1px 0 #fff;
+    -webkit-backdrop-filter: blur(16px) saturate(145%);
+    backdrop-filter: blur(16px) saturate(145%);
+}
+
+/* Style the dataset checkbox as a clear, tactile glass control. */
+[data-testid="stCheckbox"] label {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+[data-testid="stCheckbox"] label:hover {
+    background: rgba(255, 255, 255, 0.62);
+}
+
+[data-testid="stCheckbox"] label[data-selected="true"] {
+    border-color: rgba(239, 98, 67, 0.18);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.82), rgba(255, 240, 233, 0.66));
+}
+
+[data-testid="stCheckbox"] label[data-selected="true"] > div:first-of-type {
+    border-radius: 5px;
+    background: var(--accent) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 2px 6px rgba(190, 75, 48, 0.2);
+}
+
+[data-testid="stCheckbox"] label[data-selected="true"] svg {
+    stroke: #fff;
+}
+
+/* Give bordered filter and result sections the same translucent finish. */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    border-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(238, 244, 247, 0.66));
+    box-shadow: 0 9px 26px rgba(40, 61, 72, 0.065), inset 0 1px 0 #fff;
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+}
+
+.st-key-dashboard_filters {
+    margin-bottom: 1rem;
+}
