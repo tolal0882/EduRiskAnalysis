@@ -9,6 +9,9 @@ EduRisk Analysis is a simple Streamlit web app for a student risk monitoring das
 - Interactive page navigation using the Streamlit sidebar
 - Data table view of student records
 - Risk indicators based on low academic performance
+- Student data loaded from `students.csv` with Pandas
+- Data inspection showing dataset shape, columns, and first five rows
+- Clear error message when `students.csv` is missing
 
 ## Tech Stack
 
@@ -19,8 +22,9 @@ EduRisk Analysis is a simple Streamlit web app for a student risk monitoring das
 ## Project Structure
 
 - `app.py` - main Streamlit application
+- `data/students.csv` - student records loaded by the app
 - `requirements.txt` - Python dependencies
-- `.gitignore` - ignores local environment and editor metadata
+- `styles/` - reusable app styling, charts, tables, and components
 
 ## Installation
 

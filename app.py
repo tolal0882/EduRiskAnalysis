@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import streamlit as st
 import pandas as pd
 from styles import load_css
@@ -7,20 +9,22 @@ from styles.tables import show_styled_table
 
 # Step 7: Update the page configuration
 st.set_page_config(
-    page_title="EduRisk Analytics - Lab 02",
+    page_title="EduRisk Analytics - Lab 03",
     page_icon="🎓",
     layout="wide"
 )
 load_css()
 
-# Step 8: Update the student data
-student_df = pd.DataFrame({
-    "Student Name": ["Dara", "Sophea", "Vuthy", "Malis", "Rithy", "Sreyneang", "Chan", "Bopha"],
-    "Course": ["Python", "Statistics", "Python", "Database", "Web App", "Database", "Python", "Statistics"],
-    "Score": [85, 68, 45, 92, 58, 91, 72, 62],
-    "Attendance": [90, 75, 50, 95, 60, 94, 80, 88],
-    "Study Hours": [12, 8, 3, 15, 5, 14, 9, 7]
-})
+def load_student_data():
+    student_data_path = Path(__file__).resolve().parent / "data" / "students.csv"
+    try:
+        return pd.read_csv(student_data_path)
+    except FileNotFoundError:
+        st.error("data/students.csv was not found. Please place students.csv in the data folder.")
+        st.stop()
+
+
+student_df = load_student_data()
 
 # Step 9: Define a function to determine the risk level based on score and attendance
 def get_risk_level(score, attendance):
@@ -65,22 +69,16 @@ with st.sidebar:
 if selected_page == "Home":
     show_hero(
         "🎓 EduRisk Analytics",
-        "Interactive Student Risk Monitoring Dashboard",
-        "Welcome to Lab 02. Explore student performance and academic risk.",
+        "Frontend Prototype with CSV Data Loading",
+        "Welcome to Lab 03. Explore student performance and academic risk from students.csv.",
     )
-    # Option 1: Display a success message not tied to a button click
-    # st.success("Lab 02 app is running successfully!")
-    # Option 2: Create a button and display a message when clicked
-    if st.button("Click Me"):
-        st.success("Lab 02 app is running successfully!")
-    else:
-        st.info("Button not clicked yet.")
+    st.success("Lab 03 app is running successfully!")
 
 # Step 13: Create and Start the Dashboard page
 # Dashboard Page
 elif selected_page == "Dashboard":
-    st.title("Interactive Dashboard")
-    st.write("Use the filters below to explore student performance.")
+    st.title("Dashboard Prototype")
+    st.write("Explore student performance using data loaded from students.csv.")
 
     with st.container(key="dashboard_filters", border=True):
         st.subheader("Filters")
@@ -193,6 +191,14 @@ elif selected_page == "Dashboard":
 # Step 24: Update the Student Data Page
 elif selected_page == "Student Data":
     st.title("Student Data")
+    st.write("Inspect the dataset loaded from students.csv.")
+
+    st.subheader("Data Inspection")
+    st.write("Rows and Columns:", student_df.shape)
+    st.write("Column Names:")
+    st.write(student_df.columns.tolist())
+    st.write("First 5 Rows:")
+    show_styled_table(student_df.head())
 
     total_students = len(student_df)
     average_score = student_df["Score"].mean()
@@ -235,8 +241,8 @@ elif selected_page == "Risk Checker":
 # Step 26: Update the About Page
 else:
     st.title("About")
-    st.write("This app is part of Lab 02.")
+    st.write("This app is part of Lab 03.")
     st.write("Course: Web App Development for Data Science")
     st.write("Project Theme: EduRisk Analytics")
-    st.write("Topic: Streamlit Interactive Dashboard")
+    st.write("Topic: Data Loading, Layout, and Frontend Prototype")
     st.info("Ethics Reminder: Risk prediction should support students, not punish them.")
