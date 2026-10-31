@@ -1,3 +1,0 @@
-con="🎓",
-    layout="wide"
-)
