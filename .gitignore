@@ -1,6 +1,0 @@
-.agents/
-.claude/
-.venv/
-__pycache__/
-*.pyc
-.DS_Store
