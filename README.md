@@ -1,53 +1,60 @@
-# EduRisk Analysis
+# Lab 04: Forms, Validation, and Session State
 
-EduRisk Analysis is a simple Streamlit web app for a student risk monitoring dashboard. It presents student performance data, summary metrics, and a basic interactive interface for exploring academic risk information.
+## Project Theme
+
+EduRisk Analytics
+
+## Description
+
+This Streamlit app is a student academic monitoring prototype.
+
+This lab continues from Lab 03 and improves the Risk Checker page using Streamlit forms, input validation, and session state.
+
+The app loads student data from students.csv, displays dashboard information, and allows users to check individual student risk levels with a reliable form-based workflow.
 
 ## Features
 
-- Student dashboard overview
-- Summary metrics for score and attendance
-- Interactive page navigation using the Streamlit sidebar
-- Data table view of student records
-- Risk indicators based on low academic performance
-- Student data loaded from `students.csv` with Pandas
-- Data inspection showing dataset shape, columns, and first five rows
-- Clear error message when `students.csv` is missing
+- Sidebar navigation
+- Home page
+- Dashboard page
+- Student Data page
+- Risk Checker page
+- About page
+- Student dataset stored in students.csv
+- CSV data loading with Pandas
+- Missing CSV file error handling
+- Risk level calculation
+- Streamlit form
+- Form submit button
+- Empty student name validation
+- Supportive risk feedback messages
+- Session state risk-check history
+- Recent Risk Checks table
+- Clear History button
+- Ethics reminders
 
-## Tech Stack
+## Tools Used
 
 - Python
 - Streamlit
-- pandas
+- Pandas
+- VS Code
 
-## Project Structure
+## Required Files
 
-- `app.py` - main Streamlit application
-- `data/students.csv` - student records loaded by the app
-- `requirements.txt` - Python dependencies
-- `styles/` - reusable app styling, charts, tables, and components
+- app.py
+- students.csv
+- requirements.txt
+- README.md
 
-## Installation
-
-1. Clone the repository
-2. Create a virtual environment
-3. Install dependencies
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-## Run the App
+## How to Run
 
 ```bash
 streamlit run app.py
 ```
 
-## About this Project
+## Student Information
 
-This project is a beginner-friendly lab assignment for a Web App Development for Data Science course.
-
-## License
-
-This project is for educational use.
+Name: Long Tola
+Student ID: 000073200
+Class: M2
