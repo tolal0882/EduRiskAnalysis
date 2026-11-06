@@ -49,12 +49,11 @@ The app loads student data from students.csv, displays dashboard information, an
 
 ## How to Run
 
-```bash
-streamlit run app.py
-```
+python m- streamlit run app.py
 
 ## Student Information
 
 Name: Long Tola
 Student ID: 000073200
 Class: M2
+
